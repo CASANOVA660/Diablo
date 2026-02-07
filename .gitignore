@@ -34,9 +34,11 @@ lerna-debug.log*
 # Backend
 backend/uploads/
 backend/.env
+backend/.env.production
 
 # Frontend
 frontend/.env
+frontend/.env.production
 frontend/dist/
 
 
