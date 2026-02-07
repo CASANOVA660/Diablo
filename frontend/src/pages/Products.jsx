@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Heart } from 'lucide-react';
-import { getProducts } from '../utils/api';
+import { getProducts, getImageUrl } from '../utils/api';
 import { getEffectivePrice, formatPrice } from '../utils/price';
 
 export default function ProductsPage() {
@@ -67,7 +67,7 @@ export default function ProductsPage() {
                 <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition group cursor-pointer h-full flex flex-col">
                   <div className="relative overflow-hidden bg-gray-100 aspect-square">
                     <img
-                      src={(product.images && product.images[0]) || product.image || '/placeholder.svg'}
+                      src={getImageUrl((product.images && product.images[0]) || product.image) || '/placeholder.svg'}
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition"
                     />

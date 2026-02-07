@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Heart, ShoppingCart, Star, Check } from 'lucide-react';
-import { getProduct, getProducts } from '../utils/api';
+import { getProduct, getProducts, getImageUrl } from '../utils/api';
 import { getEffectivePrice, formatPrice } from '../utils/price';
 import { useCart } from '../context/CartContext';
 
@@ -101,7 +101,7 @@ export default function ProductDetail() {
             <div className="space-y-3">
               <div className="flex items-center justify-center bg-gray-100 rounded-lg p-8 md:p-12 border border-gray-200 min-h-[280px]">
                 <img
-                  src={productImages[selectedImageIndex] || '/placeholder.svg'}
+                  src={getImageUrl(productImages[selectedImageIndex]) || '/placeholder.svg'}
                   alt={product.name}
                   className="w-full h-auto max-h-96 object-cover"
                 />
@@ -117,7 +117,7 @@ export default function ProductDetail() {
                         selectedImageIndex === i ? 'border-red-600' : 'border-gray-200'
                       }`}
                     >
-                      <img src={img} alt="" className="w-full h-full object-cover" />
+                      <img src={getImageUrl(img)} alt="" className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>
@@ -265,7 +265,7 @@ export default function ProductDetail() {
                   <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition group">
                     <div className="relative overflow-hidden bg-gray-100 aspect-square">
                       <img
-                        src={(relatedProduct.images && relatedProduct.images[0]) || relatedProduct.image || '/placeholder.svg'}
+                        src={getImageUrl((relatedProduct.images && relatedProduct.images[0]) || relatedProduct.image) || '/placeholder.svg'}
                         alt={relatedProduct.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition"
                       />

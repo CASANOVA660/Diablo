@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ShoppingCart, Minus, Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { getImageUrl } from '../utils/api';
 import { getEffectivePrice, formatPrice } from '../utils/price';
 
 export function ProductShowcase() {
@@ -48,7 +49,7 @@ export function ProductShowcase() {
           <div className="w-full flex">
             <div className="w-full border-2 border-gray-200 rounded-lg bg-white p-4 flex items-center justify-center">
               <img
-                src={(product.images && product.images[0]) || product.image}
+                src={getImageUrl((product.images && product.images[0]) || product.image)}
                 alt={product.name}
                 className="w-auto h-auto max-w-[75%] max-h-[450px] object-contain"
               />

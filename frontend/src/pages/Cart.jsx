@@ -4,7 +4,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Trash2, Plus, Minus, ShoppingCart, Shield, Truck, Lock, CheckCircle, Star } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { getProducts } from '../utils/api';
+import { getProducts, getImageUrl } from '../utils/api';
 import { getEffectivePrice, formatPrice } from '../utils/price';
 
 export default function CartPage() {
@@ -105,7 +105,7 @@ export default function CartPage() {
                         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition group cursor-pointer h-full flex flex-col">
                           <div className="relative overflow-hidden bg-gray-100 aspect-square">
                             <img
-                              src={(product.images && product.images[0]) || product.image || '/placeholder.svg'}
+                              src={getImageUrl((product.images && product.images[0]) || product.image) || '/placeholder.svg'}
                               alt={product.name}
                               className="w-full h-full object-cover group-hover:scale-105 transition"
                             />
@@ -156,7 +156,7 @@ export default function CartPage() {
                         >
                           <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden">
                             <img
-                              src={(product.images && product.images[0]) || product.image || '/placeholder.svg'}
+                              src={getImageUrl((product.images && product.images[0]) || product.image) || '/placeholder.svg'}
                               alt={product.name}
                               className="w-full h-full object-cover"
                             />
@@ -337,7 +337,7 @@ export default function CartPage() {
                       <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition group cursor-pointer h-full flex flex-col">
                         <div className="relative overflow-hidden bg-gray-100 aspect-square">
                           <img
-                            src={(product.images && product.images[0]) || product.image || '/placeholder.svg'}
+                            src={getImageUrl((product.images && product.images[0]) || product.image) || '/placeholder.svg'}
                             alt={product.name}
                             className="w-full h-full object-cover group-hover:scale-105 transition"
                           />

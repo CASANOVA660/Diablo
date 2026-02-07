@@ -45,12 +45,15 @@ export const uploadImage = (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: 'No file uploaded' });
   }
-  
+  const path = `/uploads/${req.file.filename}`;
+  // Use PUBLIC_URL on Render so image URLs are always https://diablo-7.onrender.com/...
+  const base = process.env.PUBLIC_URL || process.env.BACKEND_PUBLIC_URL || `${req.protocol}://${req.get('host')}`;
+  const url = base.replace(/\/$/, '') + path;
   res.json({
     message: 'File uploaded successfully',
     filename: req.file.filename,
-    path: `/uploads/${req.file.filename}`,
-    url: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
+    path,
+    url,
   });
 };
 

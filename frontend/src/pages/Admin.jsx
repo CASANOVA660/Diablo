@@ -7,6 +7,7 @@ import {
   deleteProduct,
   uploadImage,
   getAllOrders,
+  getImageUrl,
 } from '../utils/api';
 import { Trash2, Edit2, Plus, LogOut, Package, ShoppingBag, X } from 'lucide-react';
 import { CURRENCIES, getEffectivePrice, formatPrice } from '../utils/price';
@@ -288,7 +289,7 @@ export default function Admin() {
                 >
                   <div className="w-full h-48 bg-gray-800 rounded-lg mb-4 overflow-hidden">
                     <img
-                      src={(product.images && product.images[0]) || product.image || '/placeholder.svg'}
+                      src={getImageUrl((product.images && product.images[0]) || product.image) || '/placeholder.svg'}
                       alt={product.name}
                       className="w-full h-full object-cover"
                     />
@@ -521,7 +522,7 @@ export default function Admin() {
                   {(formData.images || []).map((url, index) => (
                     <div key={index} className="relative inline-block">
                       <img
-                        src={url}
+                        src={getImageUrl(url)}
                         alt={`Preview ${index + 1}`}
                         className="w-20 h-20 object-cover rounded-lg border border-gray-600"
                       />

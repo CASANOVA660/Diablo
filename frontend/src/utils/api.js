@@ -1,6 +1,27 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://diablo-7.onrender.com/api';
+
+/** Backend base URL (no /api) for uploads and static assets */
+export const BACKEND_BASE = API_URL.replace(/\/api\/?$/, '');
+
+/**
+ * Resolve product image URL so it always points to the deployed backend.
+ * Fixes /uploads/... and http://localhost:... URLs so images load on Render.
+ */
+export function getImageUrl(url) {
+  if (!url || typeof url !== 'string') return '';
+  const u = url.trim();
+  if (u.startsWith('http://') || u.startsWith('https://')) {
+    if (u.includes('localhost') || u.includes('127.0.0.1')) {
+      const match = u.match(/\/uploads\/[^?#]+/);
+      return match ? BACKEND_BASE + match[0] : u;
+    }
+    return u;
+  }
+  if (u.startsWith('/')) return BACKEND_BASE + u;
+  return u;
+}
 
 const api = axios.create({
   baseURL: API_URL,
