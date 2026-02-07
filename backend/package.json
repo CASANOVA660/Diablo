@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "npm install && npm run dev",
+    "build": "echo \"No build step\"",
     "create-admin": "node scripts/createAdmin.js"
   },
   "dependencies": {
